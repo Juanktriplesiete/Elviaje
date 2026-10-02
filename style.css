@@ -1,0 +1,2158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #03050b;
+    color: white;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================================
+   FONDO
+========================================= */
+
+.estrellas {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.8) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,.5) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 40% 75%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 85% 65%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 10% 85%, rgba(255,255,255,.5) 0 1px, transparent 1.5px),
+        linear-gradient(135deg, #02030a, #071120, #02040b);
+
+    background-size:
+        180px 180px,
+        240px 240px,
+        200px 200px,
+        270px 270px,
+        220px 220px,
+        100% 100%;
+
+    animation: moverEstrellas 30s linear infinite;
+}
+
+@keyframes moverEstrellas {
+
+    from {
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0,
+            0 0,
+            center;
+    }
+
+    to {
+        background-position:
+            180px 180px,
+            -240px 240px,
+            200px -200px,
+            -270px 270px,
+            220px -220px,
+            center;
+    }
+}
+
+
+/* =========================================
+   PARTÍCULAS
+========================================= */
+
+#particulas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.particula {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    animation: particulaSube linear forwards;
+}
+
+@keyframes particulaSube {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(.5);
+    }
+
+    20% {
+        opacity: .7;
+    }
+
+    80% {
+        opacity: .4;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.2);
+    }
+}
+
+
+/* =========================================
+   PANTALLAS
+========================================= */
+
+.pantalla {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding:
+        max(25px, env(safe-area-inset-top))
+        max(25px, env(safe-area-inset-right))
+        max(25px, env(safe-area-inset-bottom))
+        max(25px, env(safe-area-inset-left));
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.035);
+
+    transition:
+        opacity .8s ease,
+        transform 1s ease,
+        visibility .8s ease;
+}
+
+.pantalla.activa {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.contenido {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+
+/* =========================================
+   CONTROL DE MÚSICA
+========================================= */
+
+.control-musica {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 100;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.2);
+
+    background: rgba(5,10,20,.6);
+    color: rgba(255,255,255,.7);
+
+    backdrop-filter: blur(10px);
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease;
+}
+
+.control-musica:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,.1);
+}
+
+.control-musica.activa {
+    color: #ffd3e5;
+}
+
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.boton {
+    margin-top: 45px;
+
+    padding: 13px 27px;
+
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.04);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.boton:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.7);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(255,255,255,.06);
+}
+
+
+/* =========================================
+   INICIO
+========================================= */
+
+.inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.etiqueta {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    opacity: .55;
+    margin-bottom: 30px;
+}
+
+.inicio h1 {
+    font-size: clamp(30px, 6vw, 50px);
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.texto-intro {
+    font-size: clamp(18px, 4vw, 23px);
+    font-style: italic;
+    opacity: .75;
+}
+
+.linea-intro {
+    width: 0;
+    height: 1px;
+    margin-top: 25px;
+
+    background: rgba(255,255,255,.5);
+
+    animation: aparecerLinea 2s ease forwards;
+}
+
+@keyframes aparecerLinea {
+    to {
+        width: 55px;
+    }
+}
+
+
+/* =========================================
+   SUEÑO
+========================================= */
+
+.sueno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texto-sueno {
+    font-size: clamp(20px, 4vw, 27px);
+    font-style: italic;
+    opacity: .85;
+    margin-bottom: 35px;
+}
+
+.avion {
+    font-size: 38px;
+    margin-bottom: 20px;
+
+    filter: drop-shadow(0 0 10px rgba(255,255,255,.2));
+
+    animation:
+        avionFlotando 3s ease-in-out infinite,
+        brilloAvion 3s ease-in-out infinite;
+}
+
+@keyframes avionFlotando {
+
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(-2deg);
+    }
+}
+
+@keyframes brilloAvion {
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255,255,255,.35));
+    }
+}
+
+.sueno h2 {
+    font-size: clamp(36px, 8vw, 60px);
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.pregunta-texto {
+    font-size: 16px;
+    opacity: .55;
+}
+
+.boton-pregunta {
+    margin-top: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.4);
+
+    background: rgba(255,255,255,.04);
+
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.boton-pregunta:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,.1);
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.1);
+}
+
+
+/* =========================================
+   ABORDAR
+========================================= */
+
+.abordar {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+}
+
+.abordar.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    animation: aparecerBoton .8s ease;
+}
+
+@keyframes aparecerBoton {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    background: rgba(0,0,0,.75);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+.modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-contenido {
+    position: relative;
+
+    width: 100%;
+    max-width: 480px;
+
+    padding: 45px 30px;
+
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,22,37,.98),
+            rgba(3,7,15,.98)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.7);
+
+    text-align: center;
+
+    transform:
+        translateY(15px)
+        scale(.97);
+
+    transition:
+        transform .4s ease;
+}
+
+.modal.visible .modal-contenido {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.modal-avion {
+    font-size: 25px;
+    margin-bottom: 18px;
+    opacity: .8;
+}
+
+.modal-contenido h3 {
+    font-size: 26px;
+    font-weight: normal;
+    margin-bottom: 28px;
+}
+
+.modal-contenido p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,.78);
+    margin-bottom: 13px;
+}
+
+.detalle-final {
+    display: block;
+    margin-top: 28px;
+
+    font-size: 13px;
+    font-style: italic;
+
+    color: rgba(255,255,255,.5);
+}
+
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+
+    border: none;
+    background: transparent;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 28px;
+    font-weight: 200;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOARDING PASS
+========================================= */
+
+.abordaje-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boarding-pass {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0efea,
+            #d8d7d1
+        );
+
+    color: #151515;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.5);
+
+    text-align: left;
+
+    animation:
+        entrarBoarding .9s ease;
+}
+
+@keyframes entrarBoarding {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            rotateX(8deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotateX(0);
+    }
+}
+
+.boarding-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-bottom: 20px;
+
+    border-bottom:
+        1px dashed rgba(0,0,0,.25);
+}
+
+.mini-texto {
+    display: block;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    color: #666;
+
+    margin-bottom: 5px;
+}
+
+.titulo-vuelo {
+    display: block;
+
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.numero-vuelo {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.ruta {
+    display: grid;
+
+    grid-template-columns: 1fr 80px 1fr;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 35px 0;
+}
+
+.aeropuerto {
+    display: flex;
+    flex-direction: column;
+}
+
+.aeropuerto.destino {
+    align-items: flex-end;
+}
+
+.codigo-aeropuerto {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.ciudad {
+    margin-top: 6px;
+
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+
+    color: #666;
+}
+
+.linea-vuelo {
+    position: relative;
+
+    height: 1px;
+
+    background: rgba(0,0,0,.35);
+
+    text-align: center;
+}
+
+.linea-vuelo span {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    padding: 0 8px;
+
+    background: #deddd7;
+
+    font-size: 17px;
+}
+
+.placa-uniforme {
+    min-width: 125px;
+
+    padding: 9px 13px;
+
+    border:
+        1px solid rgba(0,0,0,.45);
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eeeeeb,
+            #c9c8c3
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.8),
+        0 3px 8px rgba(0,0,0,.18);
+
+    text-align: center;
+}
+
+.nombre-placa {
+    display: block;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: #151515;
+
+    margin-bottom: 5px;
+}
+
+.cargo-placa {
+    display: block;
+
+    font-family: Arial, sans-serif;
+    font-size: 6px;
+    letter-spacing: 1.5px;
+
+    color: #333;
+}
+
+.datos-vuelo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    padding: 20px 0;
+}
+
+.datos-vuelo div {
+    display: flex;
+    flex-direction: column;
+}
+
+.datos-vuelo span {
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+
+    color: #777;
+
+    margin-bottom: 5px;
+}
+
+.datos-vuelo strong {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.separador {
+    border-top:
+        1px dashed rgba(0,0,0,.25);
+}
+
+.estado {
+    padding-top: 18px;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    color: #444;
+}
+
+.codigo-barras {
+    display: flex;
+    align-items: stretch;
+
+    height: 42px;
+
+    margin-top: 15px;
+
+    overflow: hidden;
+}
+
+.codigo-barras span {
+    display: block;
+
+    width: 3px;
+
+    margin-right: 3px;
+
+    background: #111;
+}
+
+.codigo-barras span:nth-child(2),
+.codigo-barras span:nth-child(6),
+.codigo-barras span:nth-child(11) {
+    width: 1px;
+}
+
+.codigo-barras span:nth-child(4),
+.codigo-barras span:nth-child(9),
+.codigo-barras span:nth-child(14) {
+    width: 5px;
+}
+
+.mensaje-abordaje {
+    margin-top: 18px;
+
+    font-family: Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+
+    color: #555;
+
+    text-align: center;
+}
+
+.continuar {
+    margin-top: 30px;
+}
+
+
+/* =========================================
+   PANTALLA 4 - AVIÓN
+========================================= */
+
+.vuelo-contenido {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ventana-avion {
+    position: relative;
+
+    width: min(80vw, 420px);
+    height: 230px;
+
+    border-radius:
+        45% 45%
+        40% 40%;
+
+    overflow: hidden;
+
+    border:
+        2px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.55),
+        inset 0 0 30px rgba(255,255,255,.08);
+}
+
+.cielo {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #050914,
+            #101d32 55%,
+            #18263a
+        );
+}
+
+.gif-avion {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: .75;
+
+    mix-blend-mode: screen;
+}
+
+.nubes {
+    position: absolute;
+
+    left: -20%;
+    bottom: -25px;
+
+    width: 140%;
+    height: 90px;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 50%,
+            rgba(255,255,255,.8) 0 18%,
+            transparent 19%
+        ),
+        radial-gradient(
+            ellipse at 40% 40%,
+            rgba(255,255,255,.7) 0 23%,
+            transparent 24%
+        ),
+        radial-gradient(
+            ellipse at 65% 50%,
+            rgba(255,255,255,.75) 0 20%,
+            transparent 21%
+        ),
+        radial-gradient(
+            ellipse at 85% 45%,
+            rgba(255,255,255,.65) 0 18%,
+            transparent 19%
+        );
+
+    filter: blur(8px);
+
+    animation:
+        moverNubes 12s linear infinite;
+}
+
+@keyframes moverNubes {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-10%);
+    }
+}
+
+.texto-vuelo {
+    margin-top: 35px;
+
+    font-size: clamp(20px, 4vw, 26px);
+
+    font-style: italic;
+
+    opacity: .7;
+}
+
+.vuelo-contenido h2 {
+    margin-top: 10px;
+
+    font-size: clamp(34px, 8vw, 52px);
+
+    font-weight: normal;
+}
+
+
+/* =========================================
+   PANTALLA 5 - CIUDAD
+========================================= */
+
+.ciudad-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ventana-ciudad {
+    position: relative;
+
+    width: min(82vw, 460px);
+    height: 270px;
+
+    overflow: hidden;
+
+    border-radius:
+        45% 45%
+        40% 40%;
+
+    border:
+        2px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.65);
+}
+
+.cielo-ciudad {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #02040a,
+            #07101e 45%,
+            #120e1c 100%
+        );
+}
+
+.gif-ciudad {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: .6;
+}
+
+.estrellas-ciudad {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 15% 20%, white 0 1px, transparent 1.5px),
+        radial-gradient(circle at 35% 12%, white 0 1px, transparent 1.5px),
+        radial-gradient(circle at 60% 25%, white 0 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 15%, white 0 1px, transparent 1.5px),
+        radial-gradient(circle at 90% 38%, white 0 1px, transparent 1.5px),
+        radial-gradient(circle at 25% 40%, white 0 1px, transparent 1.5px);
+
+    opacity: .65;
+}
+
+.luces-ciudad {
+    position: absolute;
+
+    left: 0;
+    bottom: 20px;
+
+    width: 100%;
+    height: 90px;
+
+    transform:
+        perspective(250px)
+        rotateX(55deg)
+        scale(1.25);
+
+    transform-origin: bottom;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 20px;
+
+    padding: 10px 35px;
+}
+
+.luces-ciudad span {
+    display: block;
+
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.75);
+
+    box-shadow:
+        0 0 7px rgba(255,255,255,.7);
+
+    animation:
+        parpadeoLuces 3s ease-in-out infinite alternate;
+}
+
+.luces-ciudad span:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.luces-ciudad span:nth-child(3n) {
+    animation-delay: 1.7s;
+}
+
+@keyframes parpadeoLuces {
+
+    from {
+        opacity: .35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.frase-cielo {
+    margin-top: 35px;
+
+    max-width: 550px;
+
+    font-size: clamp(19px, 4vw, 25px);
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+    opacity: .8;
+}
+
+.frase-sueno {
+    margin-top: 13px;
+
+    font-size: clamp(16px, 3vw, 20px);
+
+    opacity: .5;
+}
+
+
+/* =========================================
+   PANTALLA 6
+========================================= */
+
+.experiencia-contenido {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 900px;
+
+    height: min(82dvh, 760px);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   EFECTOS ESPECIALES - PANTALLA 6
+========================================= */
+
+#pantallaExperiencia::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.98) 0 2px, transparent 5px),
+        radial-gradient(circle at 27% 72%, rgba(255,255,255,.92) 0 2px, transparent 5px),
+        radial-gradient(circle at 78% 22%, rgba(255,255,255,.98) 0 2.5px, transparent 6px),
+        radial-gradient(circle at 88% 68%, rgba(255,255,255,.92) 0 2px, transparent 5px),
+        radial-gradient(circle at 60% 12%, rgba(255,255,255,.9) 0 2px, transparent 5px);
+
+    opacity: 0;
+
+    transform: scale(.82);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+
+    z-index: 0;
+}
+
+#pantallaExperiencia.estrellas-activas::before {
+    opacity: 1;
+
+    transform: scale(1.12);
+
+    animation:
+        brilloEstrellasGrandes
+        2.8s ease-in-out infinite alternate;
+}
+
+@keyframes brilloEstrellasGrandes {
+
+    from {
+        opacity: .45;
+        filter: blur(0);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(1px);
+    }
+}
+
+
+/* =========================================
+   NUBES ORIGINALES
+========================================= */
+
+.nubes-experiencia {
+    position: absolute;
+
+    left: 0;
+    bottom: 28%;
+
+    width: 100%;
+    height: 110px;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    opacity: .5;
+
+    z-index: 0;
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+.nubes-experiencia span {
+    position: absolute;
+
+    bottom: -35px;
+
+    width: 190px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,.48) 0%,
+            rgba(255,255,255,.20) 45%,
+            transparent 72%
+        );
+
+    filter: blur(6px);
+
+    animation:
+        nubeExperiencia
+        18s linear infinite;
+}
+
+.nubes-experiencia span:nth-child(1) {
+    left: -25%;
+
+    transform: scale(1.15);
+
+    animation-duration: 20s;
+}
+
+.nubes-experiencia span:nth-child(2) {
+    left: 25%;
+
+    transform: scale(.85);
+
+    opacity: .75;
+
+    animation-duration: 25s;
+    animation-delay: -8s;
+}
+
+.nubes-experiencia span:nth-child(3) {
+    left: 70%;
+
+    transform: scale(1.25);
+
+    opacity: .65;
+
+    animation-duration: 22s;
+    animation-delay: -14s;
+}
+
+@keyframes nubeExperiencia {
+
+    from {
+        transform: translateX(0) scale(1);
+    }
+
+    to {
+        transform: translateX(140vw) scale(1);
+    }
+}
+
+.nubes-experiencia.desaparecer {
+    opacity: 0;
+    transform: translateY(35px);
+}
+
+
+/* =========================================
+   SECUENCIA DE FRASES
+========================================= */
+
+.secuencia-frases {
+    position: relative;
+
+    width: 100%;
+    max-width: 800px;
+
+    height: clamp(180px, 30vh, 300px);
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto;
+}
+
+.frase-secuencia {
+    position: absolute;
+
+    inset: 0;
+
+    width: min(90%, 700px);
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    font-size: clamp(19px, 4vw, 28px);
+
+    line-height: 1.55;
+
+    font-style: italic;
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(18px)
+        scale(.98);
+
+    transition:
+        opacity 1.3s ease,
+        transform 1.3s ease,
+        visibility 1.3s ease;
+}
+
+.frase-secuencia.visible {
+    opacity: .9;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.frase-destacada {
+    color: rgba(255,190,220,.95);
+
+    text-shadow:
+        0 0 25px rgba(255,150,200,.12);
+}
+
+
+/* =========================================
+   IMAGEN FONDO - DOS PERSONAS MIRANDO
+   PANTALLA 6
+========================================= */
+
+/*
+   fondo.jpg mide 720 x 1280 px.
+
+   Al ser una imagen vertical, la controlamos
+   principalmente mediante HEIGHT y TOP,
+   en lugar de WIDTH.
+
+   TOP = posición vertical.
+   50% = centro.
+   55% = un poco más abajo.
+*/
+
+.gif-nubes-experiencia {
+    position: absolute;
+
+    left: 50%;
+    top: 55%;
+
+    width: auto;
+    height: 72vh;
+
+    max-width: 90vw;
+
+    transform:
+        translate(-50%, -50%);
+
+    object-fit: contain;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: .9;
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+
+/*
+   La imagen aparece durante
+   la secuencia de frases.
+*/
+
+#pantallaExperiencia.nubes-activas
+.gif-nubes-experiencia {
+    opacity: .75;
+}
+
+
+/*
+   La imagen desaparece
+   al terminar la secuencia.
+*/
+
+#pantallaExperiencia.nubes-desapareciendo
+.gif-nubes-experiencia {
+    opacity: 0;
+}
+
+
+/*
+   Las frases quedan por encima
+   de la imagen.
+*/
+
+.experiencia-contenido .secuencia-frases {
+    position: relative;
+    z-index: 5;
+}
+
+.experiencia-contenido #mensajeFinal {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================================
+   MENSAJE FINAL
+========================================= */
+
+.mensaje-final {
+    width: min(92%, 720px);
+
+    max-height: 70dvh;
+
+    overflow-y: auto;
+
+    margin: auto;
+
+    padding: 10px 15px;
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease,
+        visibility 1.5s ease;
+
+    scrollbar-width: none;
+}
+
+.mensaje-final::-webkit-scrollbar {
+    display: none;
+}
+
+.mensaje-final.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.mensaje-final p {
+    margin-bottom: 22px;
+
+    font-size: clamp(18px, 3.5vw, 25px);
+
+    line-height: 1.7;
+
+    font-style: italic;
+}
+
+.frase-final-corazon {
+    color: rgba(255,190,220,.95);
+
+    text-shadow:
+        0 0 20px rgba(255,150,200,.12);
+}
+
+
+/* =========================================
+   BOTÓN FINAL
+========================================= */
+
+.continuar-experiencia {
+    flex-shrink: 0;
+
+    margin-top: 25px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+}
+
+.continuar-experiencia.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   PANTALLA 10
+========================================= */
+
+.pantalla10-contenido {
+    position: relative;
+
+    width: 100%;
+    max-width: 820px;
+
+    height: min(88dvh, 850px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.pantalla10-mensaje {
+    width: min(100%, 720px);
+
+    max-height: 82dvh;
+
+    overflow-y: auto;
+
+    margin: auto;
+
+    padding:
+        20px 15px
+        30px;
+
+    scrollbar-width: none;
+
+    text-align: center;
+}
+
+.pantalla10-mensaje::-webkit-scrollbar {
+    display: none;
+}
+
+.pantalla10-intro {
+    font-size: clamp(16px, 3vw, 20px);
+
+    font-style: italic;
+
+    opacity: .55;
+
+    margin-bottom: 18px;
+}
+
+.pantalla10-mensaje h2 {
+    max-width: 650px;
+
+    margin: 0 auto 28px;
+
+    font-size: clamp(28px, 6vw, 44px);
+
+    line-height: 1.25;
+
+    font-weight: normal;
+}
+
+.linea-decorativa {
+    width: 45px;
+    height: 1px;
+
+    margin: 0 auto 32px;
+
+    background:
+        rgba(255,255,255,.35);
+}
+
+.pantalla10-mensaje > p {
+    max-width: 650px;
+
+    margin: 0 auto 23px;
+
+    font-size: clamp(17px, 3.2vw, 22px);
+
+    line-height: 1.7;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,.82);
+}
+
+.pantalla10-destacada {
+    color: rgba(255,190,220,.95) !important;
+
+    font-size: clamp(18px, 3.5vw, 24px) !important;
+}
+
+.pantalla10-final {
+    margin-top: 35px;
+
+    padding-top: 30px;
+
+    border-top:
+        1px solid rgba(255,255,255,.12);
+}
+
+.pantalla10-final p {
+    margin-bottom: 8px;
+
+    font-size: clamp(17px, 3vw, 21px);
+
+    font-style: italic;
+
+    opacity: .6;
+}
+
+.pantalla10-final strong {
+    display: block;
+
+    font-size: clamp(23px, 5vw, 32px);
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    color: rgba(255,190,220,.95);
+
+    animation:
+        brilloFinal
+        3s ease-in-out infinite;
+}
+
+@keyframes brilloFinal {
+
+    50% {
+        text-shadow:
+            0 0 25px rgba(255,150,200,.18);
+    }
+}
+
+.pantalla10-final span {
+    display: block;
+
+    margin-top: 25px;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: .45;
+}
+
+
+/* =========================================
+   NUEVOS ELEMENTOS VISUALES
+   AVIÓN / IMAGEN / AZAFATA
+========================================= */
+
+
+/* =========================================
+   AVIÓN PEQUEÑO - PANTALLA 5
+========================================= */
+
+.avion-pequeno {
+    position: absolute;
+
+    width: 90px;
+    height: auto;
+
+    top: 24%;
+    left: -120px;
+
+    z-index: 20;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    object-fit: contain;
+}
+
+
+/*
+   Cuando la pantalla 5 esté activa,
+   el avión comienza su recorrido.
+*/
+
+#pantallaCiudad.activa .avion-pequeno {
+    animation:
+        vueloAvionPequeno
+        7s
+        ease-in-out
+        0.8s
+        1
+        forwards;
+}
+
+@keyframes vueloAvionPequeno {
+
+    0% {
+        left: -120px;
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            rotate(0deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    45% {
+        transform:
+            translateY(-5px)
+            rotate(-2deg);
+    }
+
+    75% {
+        transform:
+            translateY(8px)
+            rotate(1deg);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 110%;
+        opacity: 0;
+
+        transform:
+            translateY(-5px)
+            rotate(0deg);
+    }
+}
+
+
+/* =========================================
+   IMAGEN DE AZAFATA - PANTALLA 10
+========================================= */
+
+.imagen-azafata {
+    position: absolute;
+
+    width: min(250px, 58vw);
+
+    max-height: 38vh;
+
+    height: auto;
+
+    left: 50%;
+    top: 8%;
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    object-fit: contain;
+
+    opacity: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.8s ease,
+        transform 1.8s ease;
+}
+
+
+/*
+   La imagen aparece cuando
+   llegamos a la pantalla 10.
+*/
+
+#pantalla10.activa .imagen-azafata {
+    opacity: .92;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/*
+   El texto queda por encima
+   de la imagen.
+*/
+
+.pantalla10-contenido .pantalla10-mensaje {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .pantalla {
+        padding:
+            max(15px, env(safe-area-inset-top))
+            15px
+            max(15px, env(safe-area-inset-bottom))
+            15px;
+    }
+
+    .inicio h1 {
+        font-size: 32px;
+    }
+
+    .texto-intro {
+        font-size: 18px;
+    }
+
+    .texto-sueno {
+        font-size: 20px;
+    }
+
+    .sueno h2 {
+        font-size: 43px;
+    }
+
+    .modal-contenido {
+        padding: 40px 23px;
+    }
+
+    .modal-contenido h3 {
+        font-size: 22px;
+    }
+
+    .modal-contenido p {
+        font-size: 14px;
+    }
+
+    .boarding-pass {
+        padding: 18px;
+    }
+
+    .ruta {
+        grid-template-columns: 1fr 45px 1fr;
+        gap: 7px;
+        padding: 25px 0;
+    }
+
+    .codigo-aeropuerto {
+        font-size: 14px;
+    }
+
+    .ciudad {
+        font-size: 5px;
+        letter-spacing: 1px;
+    }
+
+    .placa-uniforme {
+        min-width: 105px;
+        padding: 8px 9px;
+    }
+
+    .nombre-placa {
+        font-size: 9px;
+    }
+
+    .cargo-placa {
+        font-size: 5px;
+    }
+
+    .datos-vuelo {
+        gap: 8px;
+    }
+
+    .datos-vuelo span {
+        font-size: 6px;
+    }
+
+    .datos-vuelo strong {
+        font-size: 9px;
+    }
+
+    .mensaje-abordaje {
+        font-size: 10px;
+    }
+
+    .ventana-avion {
+        width: min(82vw, 420px);
+        height: 210px;
+    }
+
+    .ventana-ciudad {
+        height: 230px;
+    }
+
+    .frase-cielo {
+        font-size: 19px;
+    }
+
+    .frase-sueno {
+        font-size: 16px;
+    }
+
+    .experiencia-contenido {
+        width: 100%;
+        height: 82dvh;
+        justify-content: center;
+    }
+
+    .secuencia-frases {
+        width: 100%;
+        height: clamp(190px, 32vh, 270px);
+    }
+
+    .frase-secuencia {
+        width: 92%;
+        padding: 10px;
+
+        font-size:
+            clamp(18px, 5vw, 23px);
+
+        line-height: 1.5;
+    }
+
+    /*
+       IMAGEN DE DOS PERSONAS
+       EN CELULAR
+    */
+
+    .gif-nubes-experiencia {
+        top: 55%;
+        left: 50%;
+
+        width: auto;
+
+        height: 70vh;
+
+        max-width: 90vw;
+
+        transform:
+            translate(-50%, -50%);
+
+        opacity: .65;
+    }
+
+    /*
+       AVIÓN PEQUEÑO
+    */
+
+    .avion-pequeno {
+        width: 70px;
+        top: 22%;
+    }
+
+    /*
+       MENSAJE FINAL
+    */
+
+    .mensaje-final {
+        width: 94%;
+
+        max-height: 66dvh;
+
+        padding:
+            5px 8px
+            10px;
+    }
+
+    .mensaje-final p {
+        font-size:
+            clamp(16px, 4.5vw, 20px);
+
+        line-height: 1.55;
+
+        margin-bottom: 18px;
+    }
+
+    .continuar-experiencia {
+        margin-top: 15px;
+    }
+
+    /*
+       PANTALLA 10
+    */
+
+    .pantalla10-contenido {
+        width: 100%;
+        height: 88dvh;
+
+        padding: 0;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pantalla10-mensaje {
+        width: 100%;
+
+        max-height: 82dvh;
+
+        padding:
+            15px 8px
+            25px;
+    }
+
+    .pantalla10-mensaje h2 {
+        font-size:
+            clamp(27px, 7vw, 38px);
+
+        margin-bottom: 22px;
+    }
+
+    .pantalla10-mensaje > p {
+        font-size:
+            clamp(16px, 4.5vw, 19px);
+
+        line-height: 1.6;
+
+        margin-bottom: 20px;
+    }
+
+    .pantalla10-intro {
+        font-size: 16px;
+    }
+
+    .pantalla10-destacada {
+        font-size:
+            clamp(17px, 4.8vw, 21px) !important;
+    }
+
+    .pantalla10-final {
+        margin-top: 28px;
+        padding-top: 25px;
+    }
+
+    .pantalla10-final strong {
+        font-size:
+            clamp(22px, 6vw, 29px);
+    }
+
+    .imagen-azafata {
+        width:
+            min(190px, 52vw);
+
+        max-height: 30vh;
+
+        top: 5%;
+    }
+
+    .control-musica {
+        width: 40px;
+        height: 40px;
+
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+
+/* =========================================
+   PANTALLAS MUY BAJAS
+========================================= */
+
+@media (max-height: 650px) {
+
+    .experiencia-contenido {
+        height: 86dvh;
+    }
+
+    .secuencia-frases {
+        height: 190px;
+    }
+
+    .frase-secuencia {
+        font-size:
+            clamp(17px, 3.5vw, 22px);
+
+        line-height: 1.4;
+    }
+
+    /*
+       IMAGEN DE DOS PERSONAS
+    */
+
+    .gif-nubes-experiencia {
+        top: 55%;
+        height: 68vh;
+    }
+
+    .mensaje-final {
+        max-height: 64dvh;
+    }
+
+    .pantalla10-contenido {
+        height: 90dvh;
+    }
+
+    .pantalla10-mensaje {
+        max-height: 84dvh;
+    }
+
+    .imagen-azafata {
+        width: 150px;
+
+        max-height: 25vh;
+
+        top: 3%;
+    }
+}
+
+
+/* =========================================
+   REDUCIR ANIMACIONES
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: .01ms !important;
+    }
+}
