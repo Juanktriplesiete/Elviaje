@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Una pequeña experiencia</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         FONDO
+    ========================================= -->
+
+    <div class="estrellas"></div>
+    <div id="particulas"></div>
+
+
+    <!-- =========================================
+         AUDIO
+    ========================================= -->
+
+    <audio id="musicaFondo" loop preload="auto">
+        <source src="assets/musica de fondo.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="sonidoClick" preload="auto">
+        <source src="assets/sonidos/click.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="sonidoTransicion" preload="auto">
+        <source src="assets/sonidos/transicion.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="sonidoAvion" preload="auto">
+        <source src="assets/Avion Despegando.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="sonidoCampanilla" preload="auto">
+        <source src="assets/alertadeareopuerto.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- =========================================
+         CONTROL DE MÚSICA
+    ========================================= -->
+
+    <button id="controlMusica"
+        class="control-musica"
+        aria-label="Activar o desactivar música">
+        ♪
+    </button>
+
+
+    <!-- =========================================
+         PANTALLA 1
+    ========================================= -->
+
+    <main id="pantallaInicio" class="pantalla activa">
+
+        <div class="contenido inicio">
+
+            <p class="etiqueta">
+                UNA PEQUEÑA EXPERIENCIA
+            </p>
+
+            <h1>
+                Antes de comenzar...
+            </h1>
+
+            <p class="texto-intro">
+                hay algo que quiero que recuerdes.
+            </p>
+
+            <div class="linea-intro"></div>
+
+            <button id="comenzar" class="boton">
+                COMENZAR →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PANTALLA 2 - SUEÑO
+    ========================================= -->
+
+    <main id="pantallaSueno" class="pantalla">
+
+        <div class="contenido sueno">
+
+            <p class="texto-sueno">
+                Hay un sueño que sé que llevas contigo.
+            </p>
+
+            <div class="avion">
+                ✈
+            </div>
+
+            <h2>
+                Ser azafata
+            </h2>
+
+            <p class="pregunta-texto">
+                ¿Cierto?
+            </p>
+
+            <button id="pregunta" class="boton-pregunta">
+                ?
+            </button>
+
+            <button id="abordar" class="boton abordar">
+                ABORDAR →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         MODAL
+    ========================================= -->
+
+    <div id="modal" class="modal">
+
+        <div class="modal-contenido">
+
+            <button id="cerrar" class="cerrar">
+                ×
+            </button>
+
+            <div class="modal-avion">
+                ✈
+            </div>
+
+            <h3>
+                Este sueño aún te está esperando
+            </h3>
+
+            <p>
+                No importa cuánto falte.
+            </p>
+
+            <p>
+                No importa cuántas veces hayas dudado.
+            </p>
+
+            <p>
+                Si algún día soñaste con estar allá arriba,
+                todavía vale la pena intentarlo.
+            </p>
+
+            <span class="detalle-final">
+                El sueño sigue siendo tuyo.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         PANTALLA 3 - BOARDING PASS
+    ========================================= -->
+
+    <main id="pantallaAbordaje" class="pantalla">
+
+        <div class="contenido abordaje-contenido">
+
+            <div class="boarding-pass">
+
+                <div class="boarding-top">
+
+                    <div>
+
+                        <span class="mini-texto">
+                            BOARDING PASS
+                        </span>
+
+                        <span class="titulo-vuelo">
+                            EL VIAJE
+                        </span>
+
+                    </div>
+
+                    <span class="numero-vuelo">
+                        ✈ 001
+                    </span>
+
+                </div>
+
+
+                <div class="ruta">
+
+                    <div class="aeropuerto">
+
+                        <span class="codigo-aeropuerto">
+                            ESTUDIANTE
+                        </span>
+
+                        <span class="ciudad">
+                            TU PUNTO DE PARTIDA
+                        </span>
+
+                    </div>
+
+
+                    <div class="linea-vuelo">
+                        <span>✈</span>
+                    </div>
+
+
+                    <div class="aeropuerto destino placa-destino">
+
+                        <div class="placa-uniforme">
+
+                            <span class="nombre-placa">
+                                MARIANA
+                            </span>
+
+                            <span class="cargo-placa">
+                                ASISTENTE DE VUELO
+                            </span>
+
+                        </div>
+
+                        <span class="ciudad">
+                            DESTINO
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="datos-vuelo">
+
+                    <div>
+                        <span>PASAJERA</span>
+                        <strong>TÚ</strong>
+                    </div>
+
+                    <div>
+                        <span>VUELO</span>
+                        <strong>001</strong>
+                    </div>
+
+                    <div>
+                        <span>PUERTA</span>
+                        <strong>✦</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="separador"></div>
+
+
+                <div class="estado">
+                    <span>
+                        LISTA PARA DESPEGAR
+                    </span>
+                </div>
+
+
+                <div class="codigo-barras">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <p class="mensaje-abordaje">
+                    Algunos viajes comienzan mucho antes de subir a un avión.
+                </p>
+
+            </div>
+
+
+            <button id="continuarViaje" class="boton continuar">
+                CONTINUAR →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PANTALLA 4 - VUELO
+    ========================================= -->
+
+    <main id="pantallaVuelo" class="pantalla">
+
+        <div class="contenido vuelo-contenido">
+
+            <div class="ventana-avion">
+
+                <div class="cielo"></div>
+
+                <!-- GIF DEL AVIÓN / VISTA DE VUELO -->
+
+                <img
+                    id="gifAvion"
+                    class="gif-avion"
+                    src="assets/mono ventana.jpg"
+                    alt=""
+                >
+
+                <div class="nubes"></div>
+
+            </div>
+
+
+            <p class="texto-vuelo">
+                Y entonces...
+            </p>
+
+            <h2>
+                comienza el viaje.
+            </h2>
+
+
+            <button id="continuarVuelo" class="boton continuar">
+                CONTINUAR →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PANTALLA 5 - CIUDAD
+    ========================================= -->
+
+    <main id="pantallaCiudad" class="pantalla">
+
+        <div class="contenido ciudad-contenido">
+
+
+            <!-- =====================================
+                 AVIÓN PEQUEÑO
+                 
+                 APARECE DURANTE LA TRANSICIÓN
+                 HACIA LA VISTA DE LA CIUDAD.
+                 
+                 CAMBIA SOLO EL NOMBRE DEL GIF.
+            ====================================== -->
+
+            <img
+                id="avionPequeno"
+                class="avion-pequeno"
+                src="assets/aviontransparente2.gif"
+                alt=""
+            >
+
+
+            <div class="ventana-ciudad">
+
+                <div class="cielo-ciudad"></div>
+
+
+                <!-- =================================
+                     GIF / EFECTO DE LA VENTANA
+                ================================== -->
+
+                <img
+                    id="gifCiudad"
+                    class="gif-ciudad"
+                    src="assets/vistadeavion.gif"
+                    alt=""
+                >
+
+
+                <div class="estrellas-ciudad"></div>
+
+
+                <div class="luces-ciudad">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+
+            <p class="frase-cielo">
+                Hay destinos que empiezan mucho antes de llegar a ellos.
+            </p>
+
+            <p class="frase-sueno">
+                Y algunos comienzan con un sueño.
+            </p>
+
+
+            <button id="seguirVuelo" class="boton continuar">
+                SEGUIR VUELO →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PANTALLA 6 - SECUENCIA EMOCIONAL
+    ========================================= -->
+
+    <main id="pantallaExperiencia" class="pantalla">
+
+        <div class="contenido experiencia-contenido">
+
+
+            <!-- =====================================
+                 GIF DE NUBES
+                 
+                 APARECE AL COMENZAR LA SECUENCIA
+                 DE FRASES.
+
+                 DESAPARECE CUANDO TERMINA LA SECUENCIA.
+
+                 CAMBIA SOLO EL NOMBRE DEL ARCHIVO.
+            ====================================== -->
+
+            <img
+                id="gifNubesExperiencia"
+                class="gif-nubes-experiencia"
+                src="assets/fondo.jpg"
+                alt=""
+            >
+
+            <!-- =====================================
+                 SECUENCIA DE FRASES
+            ====================================== -->
+
+            <div
+                id="secuenciaFrases"
+                class="secuencia-frases"
+            >
+
+                <p class="frase-secuencia">
+                    Este viaje no se trata solamente
+                    de llegar a un destino.
+                </p>
+
+                <p class="frase-secuencia">
+                    Se trata de la persona que algún día
+                    espero ver llegar hasta él.
+                </p>
+
+                <p class="frase-secuencia">
+                    Porque tuve la oportunidad de conocer
+                    una pequeña parte de ti...
+                </p>
+
+                <p class="frase-secuencia">
+                    y fue suficiente para admirar muchísimo
+                    a la persona que eres.
+                </p>
+
+                <p class="frase-secuencia">
+                    Y entre tantas cosas...
+                </p>
+
+                <p class="frase-secuencia">
+                    hay momentos que todavía guardo conmigo.
+                </p>
+
+                <p class="frase-secuencia">
+                    La primera vez que te abracé.
+                </p>
+
+                <p class="frase-secuencia">
+                    Tu mirada de pena mientras yo hablaba con tu mamá.
+                </p>
+
+                <p class="frase-secuencia">
+                    Ese "te quiero" cerca de mi oído.
+                </p>
+
+                <p class="frase-secuencia">
+                    La paz que sentí al tenerte cerca.
+                </p>
+
+                <p class="frase-secuencia">
+                    Pequeños momentos...
+                </p>
+
+                <p class="frase-secuencia">
+                    que para mí significaron muchísimo.
+                </p>
+
+                <p class="frase-secuencia">
+                    Pero no fueron solamente esos momentos...
+                </p>
+
+                <p class="frase-secuencia">
+                    Fue la persona que fui conociendo poco a poco.
+                </p>
+
+                <p class="frase-secuencia">
+                    La forma en que me hablaste de tus sueños.
+                </p>
+
+                <p class="frase-secuencia">
+                    La emoción con la que me contabas
+                    todo lo que quieres lograr.
+                </p>
+
+                <p class="frase-secuencia">
+                    Ese sueño de querer viajar por todas partes.
+                </p>
+
+                <p class="frase-secuencia">
+                    Sin darme cuenta, tus sueños también
+                    me hicieron querer verte cumplirlos.
+                </p>
+
+                <p class="frase-secuencia">
+                    Porque cuando alguien sueña tan bonito...
+                </p>
+
+                <p class="frase-secuencia frase-destacada">
+                    uno también termina queriendo verlo
+                    llegar hasta el final.
+                </p>
+
+            </div>
+
+
+            <!-- =====================================
+                 MENSAJE FINAL
+            ====================================== -->
+
+            <div
+                id="mensajeFinal"
+                class="mensaje-final"
+            >
+
+                <p>
+                    Mariana, quiero hablarte desde mi corazón
+                    y decirte lo importante que eres para mí.
+                </p>
+
+                <p>
+                    Quiero agradecerte por estar conmigo
+                    en momentos difíciles y por ayudarme,
+                    sin quizá darte cuenta, a encontrar una
+                    tranquilidad que necesitaba muchísimo.
+                </p>
+
+                <p>
+                    Me hacía bien verte, escucharte y abrazarte.
+                    Si pudiera elegir, habría querido que alguno
+                    de esos abrazos fueran eternos, porque cuando
+                    estaba contigo me sentía realmente bien.
+                </p>
+
+                <p>
+                    Con todo esto quiero desearte un feliz cumpleaños.
+                    Le pediré a Dios siempre que te bendiga y te mantenga
+                    feliz, que no pases por tristezas ni malos ratos porque
+                    mereces cosas lindas en tu vida y creo en ti.
+                    Sé que vas a llegar hasta donde te lo propongas
+                    porque eres capaz de todo.
+                </p>
+
+                <p>
+                    Una mujer tan fuerte como tú no debería pensar
+                    que algo es demasiado difícil. De mi parte siempre
+                    contarás con el apoyo que necesites.
+                </p>
+
+                <p class="frase-final-corazon">
+                    Espero que nunca dudes de lo mucho que puedo
+                    llegar a quererte y de lo mucho que me importas.
+                </p>
+
+            </div>
+
+
+            <button
+                id="continuarExperiencia"
+                class="boton continuar-experiencia"
+            >
+                CONTINUAR →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PANTALLA 10 - REGALO
+    ========================================= -->
+
+    <main id="pantalla10" class="pantalla">
+
+        <div class="contenido pantalla10-contenido">
+
+
+            <!-- =====================================
+                 IMAGEN DE AZAFATA
+
+                 APARECE COMO ELEMENTO DECORATIVO
+                 EN LA PANTALLA FINAL.
+
+                 CAMBIA SOLO EL NOMBRE DEL ARCHIVO.
+            ====================================== -->
+
+            <img
+                id="imagenAzafata"
+                class="imagen-azafata"
+                src="assets/azafataph.png"
+                alt=""
+            >
+
+
+            <div class="pantalla10-mensaje">
+
+                <p class="pantalla10-intro">
+                    Y después de todo lo que te dije...
+                </p>
+
+                <h2>
+                    quizá ahora entiendas el porqué de este regalo.
+                </h2>
+
+                <div class="linea-decorativa"></div>
+
+                <p>
+                    No quería regalarte solamente algo bonito.
+                </p>
+
+                <p>
+                    Quería regalarte algo que tuviera un significado
+                    y que pudiera recordarte ese sueño que alguna vez
+                    me contaste con tanta ilusión.
+                </p>
+
+                <p>
+                    Por eso este gorrito de azafata representa
+                    mucho más que un detalle.
+                </p>
+
+                <p class="pantalla10-destacada">
+                    Representa el deseo de verte algún día cumpliendo
+                    todo aquello que sueñas.
+                </p>
+
+                <p>
+                    Quiero que cuando lo tengas contigo recuerdes que
+                    hay alguien que cree en ti, que admira la persona
+                    que eres y que siempre va a alegrarse de verte avanzar.
+                </p>
+
+                <p>
+                    Y también quería ser sincero contigo.
+                </p>
+
+                <p>
+                    No sé qué vaya a pasar entre nosotros,
+                    pero me niego a creer que no tendremos
+                    una oportunidad para querernos de verdad.
+                    Aunque tú solo veas problemas y problemas,
+                    yo elijo esperar ese momento, nuestro momento.
+                </p>
+
+                <p class="pantalla10-destacada">
+                    Lo que siento por ti es real.
+                </p>
+
+                <p>
+                    Solo quería que conocieras un poco de mis
+                    intenciones contigo y de lo bonito que te
+                    puedo llegar a querer.
+                </p>
+
+
+                <div class="pantalla10-final">
+
+                    <p>
+                        Y pase lo que pase...
+                    </p>
+
+                    <strong>
+                        nunca dejes de perseguir ese sueño.
+                    </strong>
+
+                    <strong>
+                        te querré siempre cielito!!
+                    </strong>
+
+                    <span>
+                        je t'aime! ✈
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
